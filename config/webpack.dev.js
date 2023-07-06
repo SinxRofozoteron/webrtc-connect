@@ -3,12 +3,15 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 const baseConfig = require('./webpack.base');
 
+const indexFilePath = path.resolve(__dirname, '..', 'src', 'index.tsx');
+
 const devConfig = {
   devtool: 'eval-source-map',
-  entry: path.resolve(__dirname, '..', 'src', 'index.tsx'),
+  entry: indexFilePath,
   mode: 'development',
   devServer: {
     port: 3002,
@@ -16,7 +19,6 @@ const devConfig = {
       progress: true
     },
     compress: true,
-    http2: true,
     hot: true
   },
   plugins: [
@@ -29,6 +31,13 @@ const devConfig = {
         configFile: path.resolve(__dirname, '..', 'tsconfig.json')
       },
       devServer: true
+    }),
+    new ModuleFederationPlugin({
+      name: 'webrtcMfe',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './WebRTCApp': indexFilePath
+      }
     })
   ]
 };

@@ -8,6 +8,8 @@ export const mount = (el: HTMLElement) => {
   root.render(<App />);
 };
 
+console.log('LOADED MFE');
+
 if (process.env.NODE_ENV === 'development') {
   const devRoot = document.getElementById('_conversation-dev-root');
 
