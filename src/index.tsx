@@ -1,19 +1,17 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
 
-import { App } from './App';
+import { App, type AppProps } from './App';
 
-export const mount = (el: HTMLElement) => {
+export const mount = (el: HTMLElement, props: AppProps) => {
   const root = createRoot(el);
-  root.render(<App />);
+  root.render(<App {...props} />);
 };
-
-console.log('LOADED MFE');
 
 if (process.env.NODE_ENV === 'development') {
   const devRoot = document.getElementById('_conversation-dev-root');
 
   if (devRoot) {
-    mount(devRoot);
+    mount(devRoot, { locale: 'en' });
   }
 }
