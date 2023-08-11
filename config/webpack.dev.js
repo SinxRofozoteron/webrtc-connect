@@ -5,8 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
-const { dependencies } = require('../package.json');
-
 const baseConfig = require('./webpack.base');
 
 const indexFilePath = path.resolve(__dirname, '..', 'src', 'index.tsx');
@@ -39,8 +37,7 @@ const devConfig = {
       filename: 'remoteEntry.js',
       exposes: {
         './WebRTCApp': indexFilePath
-      },
-      shared: dependencies
+      }
     })
   ]
 };

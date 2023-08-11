@@ -1,1 +1,7 @@
-{}
+{
+  "common.settings": "Settings",
+  "mainVideoWindow.settings.video.label": "Video",
+  "mainVideoWindow.settings.audioOutput.label": "Audio Output",
+  "mainVideoWindow.settings.audioInput.label": "Audio Input",
+  "mainVideoWindow.settings.noDevices": "No Devices found..."
+}

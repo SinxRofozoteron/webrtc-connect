@@ -29,6 +29,7 @@
     "html-webpack-plugin": "5.5.3",
     "mini-css-extract-plugin": "2.7.6",
     "prettier": "2.8.8",
+    "ts-essentials": "9.3.2",
     "typescript": "5.1.5",
     "webpack": "5.88.1",
     "webpack-cli": "5.1.4",
@@ -37,9 +38,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.9.5",
-    "@rtcapp/webrtc-ui": "2.6.0",
+    "@rtcapp/webrtc-ui": "2.7.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-intl": "6.4.4",
     "react-redux": "8.1.1"
   }
 }
