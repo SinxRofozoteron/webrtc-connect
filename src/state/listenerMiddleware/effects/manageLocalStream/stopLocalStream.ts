@@ -10,6 +10,7 @@ export const stopLocalStreamEffect = (
   _: ReturnType<typeof stopLocalStream>,
   listenerApi: ListenerEffectAPI<RootState, AppDispatch>
 ) => {
+  console.log('IN STOP MIDDDLEWARE');
   const localStream = getLocalStream();
 
   if (localStream) {

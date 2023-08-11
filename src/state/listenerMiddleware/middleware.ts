@@ -1,9 +1,14 @@
 import { createListenerMiddleware, type TypedStartListening } from '@reduxjs/toolkit';
 
 import { type RootState, type AppDispatch } from '../store';
+import { setActiveVideoDevice } from '../slices';
 
 import { startLocalStream, stopLocalStream } from './actions';
-import { startLocalStreamEffect, stopLocalStreamEffect } from './effects';
+import {
+  startLocalStreamEffect,
+  stopLocalStreamEffect,
+  changeVideoDeviceEffect
+} from './effects';
 
 const listenerMiddleware = createListenerMiddleware();
 
@@ -19,6 +24,11 @@ startListening({
 startListening({
   effect: stopLocalStreamEffect,
   actionCreator: stopLocalStream
-})
+});
+
+startListening({
+  actionCreator: setActiveVideoDevice,
+  effect: changeVideoDeviceEffect
+});
 
 export default listenerMiddleware;

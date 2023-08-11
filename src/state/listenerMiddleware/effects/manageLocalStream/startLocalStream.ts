@@ -14,7 +14,6 @@ import {
 import { type startLocalStream, stopLocalStream } from '../../actions';
 
 import { getLocalStream, setLocalStream } from './stream';
-
 /**
  * Starts local stream and sets up listener for stream stop action
  */
@@ -25,11 +24,12 @@ export const startLocalStreamEffect = async (
   // Make sure there are no active localStream
   const isLocalStreamActive = getLocalStream();
   if (isLocalStreamActive) {
-    listenerApi.dispatch(stopLocalStream());
-    // Wait for stream state to clear
-    await listenerApi.condition(
+    const waitForStreamToStop = listenerApi.condition(
       (_, currentState) => currentState.localStream.isLocalStreamActive === false
     );
+    listenerApi.dispatch(stopLocalStream());
+    // Wait for stream state to clear
+    await waitForStreamToStop;
   }
 
   const { videoDevices, audioInputDevices, audioOutputDevices } = await getDevices();
